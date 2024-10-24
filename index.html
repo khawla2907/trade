@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Trademark Saviour</title>
+        <link rel="icon" href="images/logo11.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #003366;
+            font-size: 1.3em;
+            transition: color 0.3s ease;
+        }
+
+        /* Underline animation on hover */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00bfff;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-links a:hover {
+            color: #00bfff;
+        }
+
+        .nav-links a.active {
+            color: #00bfff;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 35px;
+            height: 4px;
+            background-color: #003366;
+            margin: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 87vh;
+            padding: 0 40px;
+            background-size: cover;
+            background-position: center;
+            margin-top: 80px;
+            background-image: url('images/enterprise.jpg');
+        }
+
+        .hero-parallelogram {
+            background-color: #003366;
+            color: white;
+            padding: 30px;
+            transform: skew(-20deg);
+            position: relative;
+            max-width: 580px;
+            height: 82vh;
+            flex: 1;
+            box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-parallelogram:hover {
+            box-shadow: 0 0 30px rgba(0, 128, 255, 0.7);
+        }
+
+        .hero-parallelogram .content {
+            transform: skew(5deg);
+        }
+
+        .hero-parallelogram h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00bfff;
+            margin-bottom: 15px;
+        }
+
+        .hero-parallelogram p {
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .hero-parallelogram p.highlight {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00bfff;
+            margin-bottom: 30px;
+        }
+
+        .hero-parallelogram p.underline {
+            text-decoration: underline;
+        }
+
+        .hero-parallelogram button {
+            display: block;
+            margin: 20px auto 0 auto;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            color: white;
+            background-color: #00bfff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-parallelogram button:hover {
+            background-color: #0080ff;
+            transform: translateY(-3px);
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* Container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 0;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .text-section {
+            width: 45%;
+            padding-right: 20px;
+        }
+
+        .text-section h1 {
+            color: #003366;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+
+        .text-section p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            width: 45%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step {
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            align-items: center;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e6e6e6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+        }
+
+        .step:hover .step-icon {
+            animation: bounce 0.6s;
+        }
+
+        .step-icon {
+            background-color: #00bfff;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.4rem;
+            margin-right: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-content h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .step-content p {
+            margin: 8px 0 0 0;
+            color: #777;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        /* Bounce animation for step icons */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Packages Section */
+        .packages {
+            background-image: url("images/white.jpg");
+            padding: 50px 30px;
+            background-color: #f4f4f4;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .packages.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .packages h2 {
+            margin-bottom: 20px;
+            font-size: 2.5em;
+            color: #003366;
+            font-weight: bold;
+        }
+
+        .packages p {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .package {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin: 20px;
+            width: 350px;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .package:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 128, 255, 0.5);
+        }
+
+        .package h3 {
+            color: #003366;
+            font-size: 1.8em;
+            margin: 10px 0;
+        }
+
+        .package p {
+            line-height: 1.5;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+
+        .package span {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #00bfff;
+        }
+
+        .elite-package {
+            transform: scale(1);
+            box-shadow: 0 8px 20px rgba(0, 128, 255, 0.5);
+            width: 450px;
+            background: lightblue;
+        }
+
+        .package button {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 1.2em;
+            background-color: #00bfff;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .package button:hover {
+            background-color: #0080ff;
+            transform: translateY(-3px);
+        }
+
+        /* Testimonial Section */
+        .testimonial-section {
+            background-color: white;
+            padding: 100px 30px;
+            text-align: center;
+            position: relative;
+        }
+
+        .testimonial-section h2 {
+            font-size: 2em;
+            color: #003366;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+
+        .testimonial-section h2 span {
+            color: #00bfff;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+
+        .testimonial-carousel-inner {
+            display: flex;
+            transition: transform 0.8s ease-in-out;
+            align-items: center;
+        }
+
+        .testimonial-item {
+            display: flex;
+            align-items: center;
+            min-width: 100%;
+            box-sizing: border-box;
+            padding: 30px;
+            background-color: white;
+            border: 3px solid #00bfff;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15), 0 0 20px 5px rgba(0, 191, 255, 0.5);
+            position: relative;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .testimonial-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2), 0 0 25px 10px rgba(0, 191, 255, 0.7);
+        }
+
+        .testimonial-item p {
+            font-size: 1.2em;
+            color: #003366;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            max-width: 85%;
+            margin: 0 auto;
+        }
+
+        .testimonial-item h4 {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00bfff;
+            margin-top: 30px;
+        }
+
+        .testimonial-image {
+            width: 550px;
+            height: 300px;
+            border-radius: 0;
+            margin-right: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-image:hover {
+            transform: scale(1.05);
+        }
+
+        /* Testimonial Arrow Button Styles */
+        .testimonial-arrows {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            margin: 20px auto 0 auto;
+        }
+
+        .testimonial-arrow {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 2em;
+            transition: transform 0.3s;
+            margin-left: 10px;
+        }
+
+        .testimonial-arrow img {
+            width: 40px;
+            height: 40px;
+            display: block;
+        }
+
+        .testimonial-arrow:hover {
+            transform: scale(1.1);
+            background-color: rgba(0, 128, 255, 0.1);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            border-radius: 10px;
+            margin: 30px auto;
+            max-width: 100%;
+        }
+
+        .faq-section h2 {
+            font-size: 1.8em;
+            color: #003366;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+        }
+
+        .faq-section p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .faq-item {
+            background-color: white;
+            border: 2px solid #00bfff;
+            border-radius: 10px;
+            margin: 15px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .faq-item.show {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .faq-item:hover {
+            background-color: #e6f7ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid #00bfff;
+            margin-top: 10px;
+            color: #003366;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        /* Ready to Secure Button */
+        .ready-secure {
+            display: inline-block;
+            background-color: #003366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.5em;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .ready-secure:hover {
+            background-color: #00bfff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #003366;
+            color: white;
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .footer-info,
+        .footer-links,
+        .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer-info h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 5px 0;
+        }
+
+        .footer-links a {
+            color: #00bfff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #00bfff;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        /* Responsive changes */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%);
+                z-index: 999;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1em;
+                color: #003366;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: #00bfff;
+            }
+
+            .menu-toggle {
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menu-toggle span {
+                background-color: #003366;
+            }
+
+            .container {
+                flex-direction: column;
+                padding: 40px 0;
+            }
+
+            .text-section,
+            .steps-section {
+                width: 100%;
+                padding-right: 0;
+            }
+
+            .text-section h1 {
+                font-size: 2rem;
+                margin-bottom: 8px;
+            }
+
+            .text-section p {
+                font-size: 1rem;
+                margin-bottom: 20px;
+            }
+
+            .step {
+                padding: 15px;
+            }
+
+            .step-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+                margin-right: 15px;
+            }
+
+            .step-content h3 {
+                font-size: 1.1rem;
+            }
+
+            .step-content p {
+                font-size: 0.95rem;
+            }
+
+            .hero-parallelogram {
+                transform: none;
+                width: 90%;
+                height: auto;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 0 15px rgba(0, 128, 255, 0.5);
+            }
+
+            .hero-parallelogram .content {
+                transform: none;
+            }
+
+            .packages {
+                padding: 30px 20px;
+            }
+
+            .package {
+                width: 90%;
+                margin: 10px auto;
+            }
+
+            .testimonial-item {
+                flex-direction: column;
+                padding: 20px;
+                text-align: center;
+            }
+
+            .testimonial-image {
+                width: 100px;
+                height: 100px;
+                margin: 0 auto 20px auto;
+            }
+
+            .testimonial-item p {
+                font-size: 1.1em;
+            }
+
+            .testimonial-item h4 {
+                font-size: 1.2em;
+            }
+
+            .faq-section {
+                padding: 30px;
+            }
+
+            .faq-item {
+                padding: 15px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .footer-info,
+            .footer-links,
+            .footer-contact {
+                text-align: center;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Trademark Savior Logo">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About-us.html">About Us</a></li>
+            <li><a href="FAQ.html">FAQs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="guarantee.html">Our Guarantee</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-parallelogram">
+            <div class="content">
+                <h1>Affordable Trademark Services Starting at $45</h1>
+                <p>Expert Guidance from USPTO-Approved Professionals: Navigate the Process with Ease.</p>
+                <p>Your Path to Trademark Registration: Comprehensive Support Every Step of the Way.</p>
+                <p>Affordable Solutions Tailored to Your Needs.</p>
+                <p class="underline">Safeguard Your Brand Today for a Brighter Tomorrow.</p>
+                <button onclick="location.href='pricing.html'">Get Started</button>
+            </div>
+        </div>
+        <div class="hero-content"></div>
+    </section>
+
+    <!-- Registration Section -->
+    <div id="trademark-section" class="container">
+        <div class="text-section">
+            <h1>Streamlined Process</h1>
+            <h1>Trademark Registration Made Easy</h1>
+            <p>Our straightforward trademark registration process involves three simple steps, increasing your chances of success.</p>
+        </div>
+
+        <div class="steps-section">
+            <div class="step">
+                <div class="step-icon">1</div>
+                <div class="step-content">
+                    <h3>Free Consultation</h3>
+                    <p>Begin your journey by contacting one of our agents with a free consultation.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">2</div>
+                <div class="step-content">
+                    <h3>Compiling & Filing</h3>
+                    <p>Our attorneys will compile your details and file your trademark with USPTO.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-icon">3</div>
+                <div class="step-content">
+                    <h3>Complete</h3>
+                    <p>Your trademark serial number will be delivered to you in only 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Packages Section -->
+    <section class="packages">
+        <h2>Packages</h2>
+        <p>Affordable Trademark Registration</p>
+        <p>Packages for All Budgets</p>
+        <div class="package">
+            <h3>Gold Package</h3>
+            <span>$45</span><br>
+            <span>+ USPTO filing fees</span>
+            <p>Case Review</p>
+            <p>Case Filing</p>
+            <p>Trademark Alert</p>
+            <p>Trademark Secured</p>
+            <p>100% Satisfaction Guarantee</p>
+            <button onclick="location.href='contact-us.html'">Get Started</button>
+        </div>
+        <div class="package elite-package">
+            <h3>Elite Package</h3>
+            <span>$349</span><br>
+            <span>+ USPTO filing fees</span>
+            <p>Avoid rejection. Make sure your mark is not being used before filing.</p>
+            <p>Case Review</p>
+            <p>Case Filing</p>
+            <p>Case Preparation</p>
+            <p>Direct Hit Search</p>
+            <p>Refusal Risk Meter</p>
+            <p>100% Satisfaction Guarantee</p>
+            <button onclick="location.href='contact-us.html'">Get Started</button>
+        </div>
+        <div class="package">
+            <h3>Platinum Package</h3>
+            <span>$149</span><br>
+            <span>+ USPTO filing fees</span>
+            <p>Case Review</p>
+            <p>Case Filing</p>
+            <p>Case Preparation</p>
+            <p>Direct Hit Search</p>
+            <p>Refusal Risk Meter</p>
+            <p>Trademark Alert</p>
+            <p>100% Satisfaction Guarantee</p>
+            <button onclick="location.href='contact-us.html'">Get Started</button>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonial-section">
+        <h2>Hear From Our <span>Satisfied Clients</span></h2>
+        <div class="testimonial-carousel">
+            <div class="testimonial-carousel-inner">
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/john.jpeg" alt="John's Picture">
+                    </div>
+                    <div>
+                        <p>"I am absolutely thrilled with the service I received. They made the whole process effortless and stress-free. I always felt supported and guided. Thanks to their amazing team, my trademark was registered quickly and without any issues."</p>
+                        <h4>- John</h4>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/Emily.jpg" alt="Emily's Picture">
+                    </div>
+                    <div>
+                        <p>"The expertise and professionalism of the team truly impressed me. They were there every step of the way, answering all my questions and ensuring that everything was done correctly. I couldn't be happier with the outcome and will definitely recommend them to others."</p>
+                        <h4>- Emily</h4>
+                    </div>
+                </div>
+                <div class="testimonial-item">
+                    <div class="testimonial-image">
+                        <img src="images/john2.jpeg" alt="Chris's Picture">
+                    </div>
+                    <div>
+                        <p>"I was nervous about registering my trademark, but this company made it so easy. Their support was phenomenal, and I felt confident throughout the entire process. If you're looking for trademark registration, look no further!"</p>
+                        <h4>- Chris Johnson</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="testimonial-arrows">
+            <button class="testimonial-arrow left">
+                <img src="images/left.png" alt="Previous">
+            </button>
+            <button class="testimonial-arrow right">
+                <img src="images/right.png" alt="Next">
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Trademark Registration with the Federal Government</h2>
+        <p>Our experts are here to assist you via phone or chat whenever you need help.</p>
+
+        <div class="faq-item" id="question1">
+            <strong>1. What exactly is a trademark?</strong>
+            <div class="faq-answer">A trademark is a sign or symbol that differentiates the goods or services of one business from those of others, ensuring brand recognition.</div>
+        </div>
+
+        <div class="faq-item" id="question2">
+            <strong>2. What do we mean by unique symbols?</strong>
+            <div class="faq-answer">Unique symbols include logos, names, or phrases that are distinct to a brand, helping consumers easily identify its products or services.</div>
+        </div>
+
+        <div class="faq-item" id="question3">
+            <strong>3. Why is it essential to register a trademark?</strong>
+            <div class="faq-answer">Registering a trademark grants legal protection and exclusive rights to use the mark in commerce, effectively safeguarding your brand identity.</div>
+        </div>
+
+        <div class="faq-item" id="question4">
+            <strong>4. What are the advantages of obtaining a trademark?</strong>
+            <div class="faq-answer">Benefits include legal protection, enhanced brand recognition, and the authority to prevent others from using a similar mark, ensuring your brand's uniqueness.</div>
+        </div>
+
+        <div class="faq-item" id="question5">
+            <strong>5. Should my small business register a trademark?</strong>
+            <div class="faq-answer">While it's not legally required, registering a trademark is highly recommended to protect your brand and minimize the risk of future disputes.</div>
+        </div>
+
+        <a href="pricing.html" class="ready-secure">Ready to Secure Your Trademark?</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Trademark Savior Logo" />
+                </a>
+            </div>
+            <div class="footer-info">
+                <h2>Trademark Saviour</h2>
+                <p>Trademark Saviour offers a variety of services to help you choose a strong trademark, search for existing trademarks, and register your trademark with the USPTO. Contact us today for a free consultation.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About-us.html">About Us</a></li>
+                    <li><a href="FAQ.html">FAQs</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="guarantee.html">Guarantee</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Quick Info</h3>
+                <p>legal@tm-saviour.com</p>
+                <p>7901 4th St N, St.</p>
+                <p>Petersburg, FL 33702, USA</p>
+                <span><a href="tel:+17274167705">+1 727-416-7705</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu Toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Highlight the current active page in the navigation
+            const currentLocation = window.location.href;
+            navItems.forEach(item => {
+                if (currentLocation.includes(item.getAttribute('href'))) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Close menu when a link is clicked
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Click outside to close the menu
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Packages Section Transition
+            const packagesSection = document.querySelector('.packages');
+            const observer1 = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        packagesSection.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            observer1.observe(packagesSection);
+
+            // FAQ Section Transition
+            const faqItems = document.querySelectorAll('.faq-item');
+            const faqObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        faqObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            faqItems.forEach(item => {
+                faqObserver.observe(item);
+                item.addEventListener('click', () => {
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer.style.display === "block") {
+                        answer.style.display = "none";
+                    } else {
+                        document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = "none");
+                        answer.style.display = "block";
+                    }
+                });
+            });
+
+            // Testimonial Carousel
+            const carousel = document.querySelector('.testimonial-carousel-inner');
+            const items = document.querySelectorAll('.testimonial-item');
+            const leftArrow = document.querySelector('.testimonial-arrow.left');
+            const rightArrow = document.querySelector('.testimonial-arrow.right');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            function autoScroll() {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+            }
+
+            let autoScrollInterval = setInterval(autoScroll, 6000);
+
+            leftArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+                updateCarousel();
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = setInterval(autoScroll, 6000);
+            });
+
+            rightArrow.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateCarousel();
+                clearInterval(autoScrollInterval);
+                autoScrollInterval = setInterval(autoScroll, 6000);
+            });
+        });
+    </script>
+
+</body>
+</html>

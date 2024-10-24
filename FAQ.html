@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ - Trademark Saviour</title>
+    <link rel="icon" href="images/logo11.png" type="image/png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 30px;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 50px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin: 0 20px;
+        }
+
+        .nav-links a {
+            position: relative;
+            text-decoration: none;
+            color: #003366;
+            font-size: 1.3em;
+            transition: color 0.3s ease;
+        }
+
+        /* Underline animation on hover */
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00bfff;
+            left: 50%;
+            bottom: -5px;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .nav-links a:hover {
+            color: #00bfff;
+        }
+
+        .nav-links a.active {
+            color: #00bfff;
+            font-weight: bold;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 35px;
+            height: 4px;
+            background-color: #003366;
+            margin: 5px;
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 87vh;
+            padding: 0 40px;
+            background-size: cover;
+            background-position: center;
+            margin-top: 80px;
+            background-image: url('images/FAQ.jpg');
+        }
+
+        .hero-parallelogram {
+            background-color: #003366;
+            color: white;
+            padding: 30px;
+            transform: skew(-20deg);
+            position: relative;
+            height: 82vh;
+            max-width: 580px;
+            flex: 1;
+            box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-parallelogram:hover {
+            box-shadow: 0 0 30px rgba(0, 128, 255, 0.7);
+        }
+
+        .hero-parallelogram .content {
+            transform: skew(7deg);
+            opacity: 0;
+            transform: translateY(100px);
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-parallelogram .content.show-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-parallelogram h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00bfff;
+            margin-bottom: 15px;
+        }
+
+        .hero-parallelogram p {
+            font-size: 1.2em;
+            margin-bottom: 25px;
+            color: #e0f7fa;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .hero-parallelogram button {
+            display: block;
+            margin: 25px auto 0;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #00bfff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-parallelogram button:hover {
+            background-color: #0080ff;
+            transform: translateY(-3px);
+        }
+
+        /* Keyframes for fade-in animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translate3d(0, 40px, 0);
+            }
+            to {
+                opacity: 1;
+                transform: translate3d(0, 0, 0);
+            }
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background-color: #003366;
+            color: white;
+            padding: 60px 30px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .cta-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .cta-section h2 {
+            font-size: 2.8em;
+        }
+
+        .cta-section p {
+            font-size: 1.3em;
+            margin: 20px 0;
+        }
+
+        .cta-section .btn {
+            display: inline-block;
+            background-color: #00bfff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.3em;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin: 10px;
+        }
+
+        .cta-section .btn:hover {
+            background-color: #0080ff;
+            transform: translateY(-3px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: linear-gradient(135deg, #e0f7fa, #80deea);
+            padding: 60px 20px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .faq-section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .faq-section h2 {
+            font-size: 2.8em;
+            color: #003366;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .faq-section p {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        .faq-item {
+            background-color: white;
+            border: 2px solid #00bfff;
+            border-radius: 10px;
+            margin: 15px auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 900px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .faq-item.show {
+            opacity: 1;
+            transform: translateX(0);
+            transition: opacity 0.5s, transform 0.5s;
+        }
+
+        .faq-item:hover {
+            background-color: #e6f7ff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            border-top: 1px solid #00bfff;
+            margin-top: 10px;
+            color: #003366;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .ready-secure {
+            display: inline-block;
+            background-color: #003366;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.5em;
+            margin-top: 30px;
+            transition: background-color 0.3s, transform 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .ready-secure:hover {
+            background-color: #00bfff;
+            transform: translateY(-2px);
+        }
+
+        /* Footer Section */
+        .footer {
+            background-color: #003366;
+            color: white;
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            margin-right: 20px;
+        }
+
+        .footer-logo img {
+            height: 70px;
+            width: auto;
+        }
+
+        .footer-info,
+        .footer-links,
+        .footer-contact {
+            flex: 1;
+            min-width: 200px;
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer-info h2 {
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin: 5px 0;
+        }
+
+        .footer-links a {
+            color: #00bfff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #00bfff;
+            text-decoration: underline;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+        }
+
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%);
+                z-index: 999;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1em;
+                color: #003366;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: #00bfff;
+            }
+
+            .menu-toggle {
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menu-toggle span {
+                background-color: #003366;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .footer-info,
+            .footer-links,
+            .footer-contact {
+                margin: 20px 0;
+                text-align: center;
+            }
+
+            .hero-parallelogram {
+                transform: none;
+                width: 90%;
+                height: auto;
+                padding: 20px;
+                text-align: center;
+                box-shadow: 0 0 15px rgba(0, 128, 255, 0.5);
+            }
+
+            .hero-parallelogram .content {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">
+                <img src="images/logo.png" alt="Trademark Savior Logo">
+            </a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="About-us.html">About Us</a></li>
+            <li><a href="FAQ.html">FAQs</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="guarantee.html">Our Guarantee</a></li>
+            <li><a href="contact-us.html">Contact Us</a></li>
+        </ul>
+        <div class="menu-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-parallelogram">
+            <div class="content">
+                <h1>Frequently Asked Questions</h1>
+                <p>Get Expert Answers to Common Questions About Trademark Registration.</p>
+                <p>Learn How to Protect Your Brand with USPTO-Approved Guidance.</p>
+                <p>Our FAQ Section Covers Everything You Need to Know.</p>
+                <p class="underline">Still Have Questions? We’re Here to Help!</p>
+                <button onclick="location.href='contact-us.html'">Contact us for more information</button>
+            </div>
+        </div>
+        <div class="hero-content">
+            <!-- Additional content can be placed here -->
+        </div>
+    </section>
+
+    <!-- Call-to-Action Section -->
+    <section class="cta-section">
+        <h2>Ready to Protect Your Brand?</h2>
+        <p>Act now to secure your trademark before someone else does!</p>
+        <a href="pricing.html" class="btn">Get Started</a>
+        <a href="contact-us.html" class="btn">Learn More</a>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Trademark Registration FAQs</h2>
+        <p>Our experts are here to assist you via phone or chat whenever you need help.</p>
+
+        <div class="faq-item" id="question1">
+            <strong>1. What exactly is a trademark?</strong>
+            <div class="faq-answer">A trademark is a sign or symbol that differentiates the goods or services of one business from those of others, ensuring brand recognition.</div>
+        </div>
+
+        <div class="faq-item" id="question2">
+            <strong>2. What do we mean by unique symbols?</strong>
+            <div class="faq-answer">Unique symbols include logos, names, or phrases that are distinct to a brand, helping consumers easily identify its products or services.</div>
+        </div>
+
+        <div class="faq-item" id="question3">
+            <strong>3. Why is it essential to register a trademark?</strong>
+            <div class="faq-answer">Registering a trademark grants legal protection and exclusive rights to use the mark in commerce, effectively safeguarding your brand identity.</div>
+        </div>
+
+        <div class="faq-item" id="question4">
+            <strong>4. What are the advantages of obtaining a trademark?</strong>
+            <div class="faq-answer">Benefits include legal protection, enhanced brand recognition, and the authority to prevent others from using a similar mark, ensuring your brand's uniqueness.</div>
+        </div>
+
+        <div class="faq-item" id="question5">
+            <strong>5. Should my small business register a trademark?</strong>
+            <div class="faq-answer">While it's not legally required, registering a trademark is highly recommended to protect your brand and minimize the risk of future disputes.</div>
+        </div>
+
+        <a href="pricing.html" class="ready-secure">Ready to Secure Your Trademark?</a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Trademark Savior Logo" />
+                </a>
+            </div>
+            <div class="footer-info">
+                <h2>Trademark Saviour</h2>
+                <p>Trademark Saviour offers a variety of services to help you choose a strong trademark, search for existing trademarks, and register your trademark with the USPTO. Contact us today for a free consultation.</p>
+            </div>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="About-us.html">About Us</a></li>
+                    <li><a href="FAQ.html">FAQs</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="guarantee.html">Guarantee</a></li>
+                    <li><a href="contact-us.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h3>Quick Info</h3>
+                <p>legal@tm-saviour.com</p>
+                <p>7901 4th St N, St. Petersburg</p>
+                <p>FL 33702, USA</p>
+                <span><a href="tel:+17274167705">+1 727-416-7705</a></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts for Animation and FAQ Interaction -->
+    <script>
+        // Menu Toggle and Navbar Highlight
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            // Toggle mobile menu
+            menuToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // Highlight the current active page in the navigation
+            const currentPath = window.location.pathname.toLowerCase();
+            navItems.forEach(item => {
+                const href = item.getAttribute('href').toLowerCase();
+                if (currentPath.endsWith(href)) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            });
+
+            // Close menu when a link is clicked
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+            // Click outside to close the menu
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // Intersection Observer for Animations
+            const options = {
+                threshold: 0.1
+            };
+
+            // Hero Section Animation
+            const parallelogram = document.querySelector(".hero-parallelogram");
+            const parallelogramContent = document.querySelector(".hero-parallelogram .content");
+
+            const parallelogramObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        parallelogramContent.classList.add("show-content");
+                        parallelogramObserver.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            parallelogramObserver.observe(parallelogram);
+
+            // CTA Section Animation
+            const ctaSection = document.querySelector(".cta-section");
+
+            const ctaObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        ctaSection.classList.add("show");
+                        ctaObserver.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            ctaObserver.observe(ctaSection);
+
+            // FAQ Section Animation and Toggle Functionality
+            const faqSection = document.querySelector(".faq-section");
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            const faqObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        faqSection.classList.add('show');
+                        faqObserver.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            faqObserver.observe(faqSection);
+
+            // FAQ Items Animation and Click Events
+            const faqItemObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                        faqItemObserver.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            faqItems.forEach(item => {
+                faqItemObserver.observe(item);
+                item.addEventListener('click', () => {
+                    const answer = item.querySelector('.faq-answer');
+                    if (answer.style.display === "block") {
+                        answer.style.display = "none";
+                    } else {
+                        document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = "none");
+                        answer.style.display = "block";
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
