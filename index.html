@@ -123,8 +123,7 @@
             height: 85vh;
             flex: 1;
             box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out;
+          
         }
 
         .hero-parallelogram:hover {
@@ -134,6 +133,20 @@
         .hero-parallelogram .content {
             transform: skew(5deg);
         }
+
+        /* Ensure only the text animates */
+.hero-parallelogram .content {
+    opacity: 0; /* Make the content initially hidden */
+    transform: translate3d(0, 40px, 0); /* Start with a slight downward shift */
+    transition: opacity 0.6s ease, transform 0.6s ease; /* Smooth transition for opacity and transform */
+}
+
+/* Show the content when it becomes visible */
+.hero-parallelogram .content.show-content {
+    opacity: 1; /* Fade in */
+    transform: translate3d(0, 0, 0); /* Slide up */
+}
+
 
         .hero-parallelogram h1 {
             font-size: 2.5em;
@@ -252,6 +265,32 @@
         }
 
         /* Steps Section */
+        /* Hide all steps initially */
+.steps-section .step {
+    transform: translateX(-100%); /* Start off-screen to the left */
+    opacity: 0; /* Start hidden */
+    transition: transform 1s ease, opacity 1s ease; /* Longer transition for slower animation */
+}
+
+/* Show the steps when they are in view */
+.steps-section .step.show-step {
+    transform: translateX(0); /* Move to its normal position */
+    opacity: 1; /* Fade in */
+}
+
+/* Add staggered delays for each step */
+.steps-section .step:nth-child(1) {
+    transition-delay: 0s; /* First step, no delay */
+}
+
+.steps-section .step:nth-child(2) {
+    transition-delay: 0.5s; /* Second step, delayed by 0.5s */
+}
+
+.steps-section .step:nth-child(3) {
+    transition-delay: 1s; /* Third step, delayed by 1s */
+}
+
         .steps-section {
             width: 45%;
             display: flex;
@@ -282,7 +321,7 @@
         .step-icon {
     background-color: #00bfff;
     color: white;
-    border-radius: 170%; /* Ensures a circular shape */
+    border-radius: 50%; /* Perfect circle */
     width: 50px; /* Fixed width */
     height: 50px; /* Fixed height */
     display: flex;
@@ -1174,20 +1213,44 @@
             });
         });
 
-         // Hero Section Intersection Observer
-         const parallelogram = document.querySelector(".hero-parallelogram");
-            const parallelogramContent = document.querySelector(".hero-parallelogram .content");
+         // Get the .hero-parallelogram and its content
+const parallelogram = document.querySelector(".hero-parallelogram");
+const parallelogramContent = document.querySelector(".hero-parallelogram .content");
 
-            const parallelogramObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        parallelogramContent.classList.add("show-content");
-                        parallelogramObserver.unobserve(entry.target);
-                    }
-                });
-            }, options);
+// Set up the Intersection Observer
+const parallelogramObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+            // Add class to trigger animation only for content (not the whole parallelogram)
+            parallelogramContent.classList.add("show-content");
+            observer.unobserve(entry.target); // Stop observing after the animation
+        }
+    });
+}, { threshold: 0.5 }); // Trigger the animation when 50% of the element is visible
 
-            parallelogramObserver.observe(parallelogram);
+// Observe the parallelogram for visibility
+parallelogramObserver.observe(parallelogram);
+
+// Select all the steps
+const steps = document.querySelectorAll('.steps-section .step');
+
+// Create an Intersection Observer to detect when the steps section comes into view
+const stepsObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Add the 'show-step' class to animate the step in
+            entry.target.classList.add('show-step');
+            observer.unobserve(entry.target); // Stop observing the element after animation
+        }
+    });
+}, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+// Observe each step element
+steps.forEach(step => {
+    stepsObserver.observe(step);
+});
+
+
     </script>
 
 </body>
