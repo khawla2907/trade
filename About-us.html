@@ -18,16 +18,18 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Smaller base font size */
+    line-height: 1.5; /* Reduced line spacing */
+    letter-spacing: 0.5px; /* Tighter word spacing */
+}
 
         /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 10px 30px;
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -54,7 +56,7 @@
             position: relative;
             text-decoration: none;
             color: #003366;
-            font-size: 1.3em;
+            font-size: 1.1em;
             transition: color 0.3s ease;
         }
 
@@ -151,7 +153,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 87vh;
+            height: 90vh;
             padding: 0 40px;
             background-size: cover;
             background-position: center;
@@ -170,7 +172,7 @@
             flex: 1;
             box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out;
+         
         }
 
         .hero-parallelogram:hover {
@@ -195,8 +197,10 @@
         .hero-parallelogram h1 {
             font-size: 2.5em;
             font-weight: bold;
+            font-family:"Calibri (Heading) Light", Calibri, Arial, sans-serif;
+            line-height: 1.9;
             color: #00bfff;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }
 
         .hero-parallelogram p {
@@ -226,18 +230,7 @@
             transform: translateY(-3px);
         }
 
-        /* Keyframes for fade-in animation */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translate3d(0, 40px, 0);
-            }
-            to {
-                opacity: 1;
-                transform: translate3d(0, 0, 0);
-            }
-        }
-
+       
         /* About Section */
         .about-section {
             padding: 60px 30px;
@@ -265,16 +258,16 @@
         }
 
         .about-box h2 {
-            font-size: 2.8em;
+            font-size: 2.0em;
             color: #003366;
             font-weight: bold;
             margin-bottom: 20px;
         }
 
         .about-box p {
-            font-size: 1.3em;
+            font-size: 1.0em;
             color: #333;
-            line-height: 1.6;
+            line-height: 1.9;
         }
 
         /* Call-to-Action Section */
@@ -294,7 +287,7 @@
         }
 
         .cta-section h2 {
-            font-size: 2.8em;
+            font-size: 2.0em;
             margin-bottom: 20px;
         }
 
@@ -328,13 +321,13 @@
         }
 
         .features-section h2 {
-            font-size: 2.5em;
+            font-size: 2.0em;
             color: #003366;
             margin-bottom: 20px;
         }
 
         .section-subtitle {
-            font-size: 1.3em;
+            font-size: 1.0em;
             color: #333;
             margin-bottom: 40px;
         }
@@ -387,15 +380,16 @@
         }
 
         .feature-text h3 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             color: #003366;
             margin-bottom: 10px;
         }
 
         .feature-text p {
-            font-size: 1.2em;
+            font-size: 1.0em;
             color: #333;
-            line-height: 1.6;
+            
+            line-height: 1.9;
         }
 
         .show-box {
@@ -420,7 +414,7 @@
         }
 
         .about-us-section h2 {
-            font-size: 2.5em;
+            font-size: 2.0em;
             color: #ffffff;
             margin-bottom: 30px;
         }
@@ -449,14 +443,14 @@
         }
 
         .info-box h3 {
-            font-size: 1.8em;
+            font-size: 1.5em;
             margin-bottom: 15px;
             color: #ffffff;
         }
 
         .info-box p {
-            font-size: 1.2em;
-            line-height: 1.5;
+            font-size: 1.0em;
+            line-height: 1.9;
             color: #e0e0e0;
         }
 
@@ -740,12 +734,13 @@
                 </ul>
             </div>
             <div class="footer-contact">
-                <h3>Quick Info</h3>
-                <p>legal@tm-saviour.com</p>
-                <p>7901 4th St N, St. Petersburg</p>
-                <p>FL 33702, USA</p>
-                <span><a href="tel:+17274167705">+1 727-416-7705</a></span>
-            </div>
+    <h3 style="color: white;">Quick Info</h3>
+<p><a href="mailto:Info@tm-saviour.com" style="color: white; text-decoration: none;">Info@tm-saviour.com</a></p>
+<p><a href="https://www.google.com/maps?q=7901+4th+St+N,+St.+Petersburg,+FL+33702,+USA" target="_blank" style="color: white; text-decoration: none;">7901 4th St N, St. Petersburg, FL 33702, USA</a></p>
+<span><a href="tel:+1 206-844-5935" style="color: white; text-decoration: none;">+1 206-844-5935</a></span>
+
+
+
         </div>
     </footer>
 
