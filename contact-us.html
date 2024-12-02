@@ -18,16 +18,20 @@
             scroll-behavior: smooth;
         }
 
+        
         body {
-            font-family: Arial, sans-serif;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Smaller base font size */
+    line-height: 1.5; /* Reduced line spacing */
+    letter-spacing: 0.5px; /* Tighter word spacing */
+}
 
         /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 10px 30px;
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -54,7 +58,7 @@
             position: relative;
             text-decoration: none;
             color: #003366;
-            font-size: 1.3em;
+            font-size: 1.1em;
             transition: color 0.3s ease;
         }
 
@@ -151,7 +155,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 87vh;
+            height: 90vh;
             padding: 0 40px;
             background-size: cover;
             background-position: center;
@@ -170,7 +174,7 @@
             flex: 1;
             box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out;
+         
         }
 
         .hero-parallelogram:hover {
@@ -180,8 +184,11 @@
         .hero-parallelogram .content {
             transform: skew(7deg);
             opacity: 0;
-            transform: translateY(120px);
+            transform: translateY(100px);
             transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .hero-parallelogram .content.show-content {
@@ -190,19 +197,22 @@
         }
 
         .hero-parallelogram h1 {
+            margin-top: 100px;
             font-size: 2.5em;
             font-weight: bold;
+            font-family:"Calibri (Heading) Light", Calibri, Arial, sans-serif;
+            line-height: 1.9;
             color: #00bfff;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .hero-parallelogram p {
             font-size: 1.2em;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #e0f7fa;
             line-height: 1.8;
+            text-align: center;
         }
-
         .hero-parallelogram button {
             display: block;
             margin: 25px auto 0;
@@ -376,6 +386,12 @@
             text-align: center;
             font-size: 0.8em;
         }
+#form-response {
+    margin-top: 20px;
+    font-size: 1.1em;
+    color: #003366;
+}
+
 
         @media (max-width: 768px) {
             .footer-content {
@@ -441,28 +457,32 @@
     </section>
 
     <!-- Contact Form Section -->
-    <section class="contact-section">
-        <div class="contact-form-container">
-            <div class="contact-form">
-                <h2>Get in Touch</h2>
-                <form action="send_email.php" method="post" id="contact-form">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+<section class="contact-section">
+    <div class="contact-form-container">
+        <div class="contact-form">
+            <h2>Get in Touch</h2>
+            <form action="send_email.php" method="post" id="contact-form">
+                <!-- Form fields -->
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
 
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
 
-                    <label for="subject">Subject</label>
-                    <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                <label for="subject">Subject</label>
+                <input type="text" id="subject" name="subject" placeholder="Subject" required>
 
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" placeholder="Write your message here" required></textarea>
 
-                    <button type="submit">Submit</button>
-                </form>
-            </div>
+                <button type="submit">Submit</button>
+            </form>
+            <!-- Response Div -->
+            <div id="form-response"></div>
         </div>
-    </section>
+    </div>
+</section>
+
 
     <!-- Footer -->
     <footer class="footer">
@@ -488,89 +508,123 @@
                 </ul>
             </div>
             <div class="footer-contact">
-    <h3>Quick Info</h3>
-    <p><a href="mailto:Info@tm-saviour.com">Info@tm-saviour.com</a></p>
-    <p>7901 4th St N, St. Petersburg</p>
-    <p>FL 33702, USA</p>
-    <span><a href="tel:+1 206-844-5935">+1 206-844-5935</a></span>
-</div>
+    <h3 style="color: white;">Quick Info</h3>
+<p><a href="mailto:Info@tm-saviour.com" style="color: white; text-decoration: none;">Info@tm-saviour.com</a></p>
+<p><a href="https://www.google.com/maps?q=7901+4th+St+N,+St.+Petersburg,+FL+33702,+USA" target="_blank" style="color: white; text-decoration: none;">7901 4th St N, St. Petersburg, FL 33702, USA</a></p>
+<span><a href="tel:+1 206-844-5935" style="color: white; text-decoration: none;">+1 206-844-5935</a></span>
 
         </div>
     </footer>
 
-    <!-- JavaScript for Navbar Toggle and Animations -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            const navItems = document.querySelectorAll('.nav-links a');
+   <!-- JavaScript for Navbar Toggle, Animations, and AJAX Form Submission -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Navbar Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links a');
 
-            // Toggle mobile menu
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
+    // Toggle mobile menu
+    menuToggle.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+    });
 
-            // Highlight the current active page in the navigation
-            const currentPath = window.location.pathname.toLowerCase();
-            navItems.forEach(item => {
-                const href = item.getAttribute('href').toLowerCase();
-                if (currentPath.endsWith(href)) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
+    // Highlight the current active page in the navigation
+    const currentPath = window.location.pathname.toLowerCase();
+    navItems.forEach(item => {
+        const href = item.getAttribute('href').toLowerCase();
+        if (currentPath.endsWith(href)) {
+            item.classList.add('active');
+        } else {
+            item.classList.remove('active');
+        }
+    });
 
-            // Close menu when a link is clicked
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-
-            // Click outside to close the menu
-            document.addEventListener('click', function (event) {
-                if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
-                    navLinks.classList.remove('active');
-                }
-            });
-
-            // Intersection Observer for Animations
-            const options = {
-                threshold: 0.1
-            };
-
-            // Hero Section Animation
-            const parallelogram = document.querySelector(".hero-parallelogram");
-            const parallelogramContent = document.querySelector(".hero-parallelogram .content");
-
-            const parallelogramObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        parallelogramContent.classList.add("show-content");
-                        parallelogramObserver.unobserve(entry.target);
-                    }
-                });
-            }, options);
-
-            parallelogramObserver.observe(parallelogram);
-
-            // Contact Section Animation
-            const contactSection = document.querySelector(".contact-section");
-
-            const contactObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        contactSection.classList.add("show");
-                        contactObserver.unobserve(entry.target);
-                    }
-                });
-            }, options);
-
-            contactObserver.observe(contactSection);
+    // Close menu when a link is clicked
+    navItems.forEach(item => {
+        item.addEventListener('click', () => {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
         });
-    </script>
+    });
+
+    // Click outside to close the menu
+    document.addEventListener('click', function (event) {
+        if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+            navLinks.classList.remove('active');
+        }
+    });
+
+    // Intersection Observer for Animations
+    const options = {
+        threshold: 0.1
+    };
+
+    // Hero Section Animation
+    const parallelogram = document.querySelector(".hero-parallelogram");
+    const parallelogramContent = document.querySelector(".hero-parallelogram .content");
+
+    const parallelogramObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                parallelogramContent.classList.add("show-content");
+                parallelogramObserver.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    parallelogramObserver.observe(parallelogram);
+
+    // Contact Section Animation
+    const contactSection = document.querySelector(".contact-section");
+
+    const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                contactSection.classList.add("show");
+                contactObserver.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    contactObserver.observe(contactSection);
+
+    // Handle form submission via AJAX
+    const contactForm = document.getElementById('contact-form');
+    const formResponse = document.getElementById('form-response');
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+
+        // Display a loading message (optional)
+        formResponse.innerHTML = '<p>Sending your message...</p>';
+
+        // Gather form data
+        const formData = new FormData(contactForm);
+
+        // Send the form data via AJAX using Fetch API
+        fetch('send_email.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text()) // Expecting text response from the server
+        .then(data => {
+            // Display the server response in the form-response div
+            formResponse.innerHTML = data;
+            // Optionally, reset the form fields
+            contactForm.reset();
+
+            // Scroll to the response message (optional)
+            formResponse.scrollIntoView({ behavior: 'smooth' });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            formResponse.innerHTML = '<p style="color: red;">An error occurred while submitting the form. Please try again later.</p>';
+        });
+    });
+});
+</script>
+
 </body>
-</html>
+</html>                                                            
