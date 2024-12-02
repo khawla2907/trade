@@ -19,16 +19,18 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Smaller base font size */
+    line-height: 1.5; /* Reduced line spacing */
+    letter-spacing: 0.5px; /* Tighter word spacing */
+}
 
         /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 10px 30px;
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -55,7 +57,7 @@
             position: relative;
             text-decoration: none;
             color: #003366;
-            font-size: 1.3em;
+            font-size: 1.1em;
             transition: color 0.3s ease;
         }
 
@@ -98,12 +100,61 @@
             margin: 5px;
         }
 
+        /* Mobile responsiveness */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: transform 0.3s ease-in-out;
+                transform: translateY(-100%);
+                z-index: 999;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+                transform: translateY(0);
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1em;
+                color: #003366;
+                transition: color 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                color: #00bfff;
+            }
+
+            .menu-toggle {
+                display: flex;
+                cursor: pointer;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .menu-toggle span {
+                background-color: #003366;
+            }
+        }
+
         /* Hero Section */
         .hero {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 87vh;
+            height: 90vh;
             padding: 0 40px;
             background-size: cover;
             background-position: center;
@@ -122,7 +173,7 @@
             flex: 1;
             box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
             transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out;
+         
         }
 
         .hero-parallelogram:hover {
@@ -147,17 +198,20 @@
         .hero-parallelogram h1 {
             font-size: 2.5em;
             font-weight: bold;
+            font-family:"Calibri (Heading) Light", Calibri, Arial, sans-serif;
+            line-height: 1.9;
             color: #00bfff;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }
 
         .hero-parallelogram p {
             font-size: 1.2em;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: #e0f7fa;
             line-height: 1.8;
             text-align: center;
         }
+
 
         .hero-parallelogram button {
             display: block;
@@ -206,11 +260,11 @@
         }
 
         .cta-section h2 {
-            font-size: 2.8em;
+            font-size: 2.0em;
         }
 
         .cta-section p {
-            font-size: 1.3em;
+            font-size: 1.0em;
             margin: 20px 0;
         }
 
@@ -247,14 +301,14 @@
         }
 
         .faq-section h2 {
-            font-size: 2.8em;
+            font-size: 2.0em;
             color: #003366;
-            font-weight: bold;
+          
             margin-bottom: 20px;
         }
 
         .faq-section p {
-            font-size: 1.2em;
+            font-size: 1.0em;
             color: #333;
             margin-bottom: 40px;
         }
@@ -289,14 +343,14 @@
         }
 
         .faq-answer {
-            display: none;
-            padding: 15px;
-            border-top: 1px solid #00bfff;
-            margin-top: 10px;
-            color: #003366;
-            text-align: left;
-            font-size: 1.1em;
-        }
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #00bfff;
+    margin-top: 10px;
+    color: #003366;
+    text-align: center; /* Align text in the center */
+    font-size: 1.1em;
+}
 
         .ready-secure {
             display: inline-block;
@@ -565,12 +619,12 @@
                 </ul>
             </div>
             <div class="footer-contact">
-                <h3>Quick Info</h3>
-                <p>legal@tm-saviour.com</p>
-                <p>7901 4th St N, St. Petersburg</p>
-                <p>FL 33702, USA</p>
-                <span><a href="tel:+17274167705">+1 727-416-7705</a></span>
-            </div>
+    <h3 style="color: white;">Quick Info</h3>
+<p><a href="mailto:Info@tm-saviour.com" style="color: white; text-decoration: none;">Info@tm-saviour.com</a></p>
+<p><a href="https://www.google.com/maps?q=7901+4th+St+N,+St.+Petersburg,+FL+33702,+USA" target="_blank" style="color: white; text-decoration: none;">7901 4th St N, St. Petersburg, FL 33702, USA</a></p>
+<span><a href="tel:+1 206-844-5935" style="color: white; text-decoration: none;">+1 206-844-5935</a></span>
+
+
         </div>
     </footer>
 
