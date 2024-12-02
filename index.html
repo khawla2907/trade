@@ -19,15 +19,18 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
-        }
+    font-family: Arial, sans-serif;
+    font-size: 14px; /* Smaller base font size */
+    line-height: 1.5; /* Reduced line spacing */
+    letter-spacing: 0.5px; /* Tighter word spacing */
+}
 
         /* Navbar */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 30px;
+            padding: 10px 30px;
             background-color: white;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             position: fixed;
@@ -54,7 +57,7 @@
             position: relative;
             text-decoration: none;
             color: #003366;
-            font-size: 1.3em;
+            font-size: 1.1em;
             transition: color 0.3s ease;
         }
 
@@ -114,10 +117,10 @@
             background-color: #003366;
             color: white;
             padding: 30px;
-            transform: skew(-20deg);
+            transform: skew(-18deg);
             position: relative;
             max-width: 580px;
-            height: 82vh;
+            height: 85vh;
             flex: 1;
             box-shadow: 0 0 20px rgba(0, 128, 255, 0.5);
             transition: all 0.3s ease;
@@ -134,16 +137,24 @@
 
         .hero-parallelogram h1 {
             font-size: 2.5em;
-            font-weight: bold;
+            line-height: 1.7; 
+            text-align: center;
+            font-family:"Calibri (Heading) Light", Calibri, Arial, sans-serif;
             color: #00bfff;
-            margin-bottom: 15px;
+            margin-bottom: 40px;
         }
 
         .hero-parallelogram p {
             margin-bottom: 20px;
             font-size: 1.2em;
+            line-height: 1.5;
             line-height: 1.6;
             font-weight: 400;
+
+
+ 
+
+
         }
 
         .hero-parallelogram p.highlight {
@@ -175,6 +186,25 @@
             transform: translateY(-3px);
         }
 
+        
+        .hero-parallelogram button {
+            display: block;
+            margin: 25px auto 0;
+            padding: 10px 25px;
+            font-size: 1.1em;
+            color: white;
+            background-color: #00bfff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 128, 255, 0.5);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .hero-parallelogram button:hover {
+            background-color: #0080ff;
+            transform: translateY(-3px);
+        }
+
         /* Keyframes for fade-in animation */
         @keyframes fadeInUp {
             from {
@@ -187,6 +217,9 @@
             }
         }
 
+
+        
+      
         /* Container */
         .container {
             display: flex;
@@ -201,19 +234,21 @@
         .text-section {
             width: 45%;
             padding-right: 20px;
+            line-height: 2;
         }
 
         .text-section h1 {
+            font-family:"Calibri (Heading) Light", Calibri, Arial, sans-serif;
             color: #003366;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 10px;
-            line-height: 1.2;
+            line-height: 1.5;
         }
 
         .text-section p {
             color: #555;
             font-size: 1.1rem;
-            line-height: 1.6;
+            line-height: 2;
         }
 
         /* Steps Section */
@@ -245,18 +280,22 @@
         }
 
         .step-icon {
-            background-color: #00bfff;
-            color: white;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 1.4rem;
-            margin-right: 20px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        }
+    background-color: #00bfff;
+    color: white;
+    border-radius: 170%; /* Ensures a circular shape */
+    width: 50px; /* Fixed width */
+    height: 50px; /* Fixed height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    margin-right: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Prevent content overflow */
+    box-sizing: border-box; /* Ensures padding doesn't affect dimensions */
+}
+
+
 
         .step-content {
             flex-grow: 1;
@@ -428,11 +467,12 @@
         }
 
         .testimonial-item p {
+            
             font-size: 1.2em;
             color: #003366;
             font-style: italic;
             margin-bottom: 25px;
-            line-height: 1.6;
+            line-height: 1.8;
             max-width: 85%;
             margin: 0 auto;
         }
@@ -548,14 +588,14 @@
         }
 
         .faq-answer {
-            display: none;
-            padding: 15px;
-            border-top: 1px solid #00bfff;
-            margin-top: 10px;
-            color: #003366;
-            text-align: left;
-            font-size: 1.1em;
-        }
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #00bfff;
+    margin-top: 10px;
+    color: #003366;
+    text-align: center; /* Align text in the center */
+    font-size: 1.1em;
+}
 
         /* Ready to Secure Button */
         .ready-secure {
@@ -835,6 +875,7 @@
         <div class="hero-content"></div>
     </section>
 
+
     <!-- Registration Section -->
     <div id="trademark-section" class="container">
         <div class="text-section">
@@ -1015,11 +1056,11 @@
                 </ul>
             </div>
             <div class="footer-contact">
-                <h3>Quick Info</h3>
-                <p>legal@tm-saviour.com</p>
-                <p>7901 4th St N, St.</p>
-                <p>Petersburg, FL 33702, USA</p>
-                <span><a href="tel:+17274167705">+1 727-416-7705</a></span>
+    <h3 style="color: white;">Quick Info</h3>
+<p><a href="mailto:Info@tm-saviour.com" style="color: white; text-decoration: none;">Info@tm-saviour.com</a></p>
+<p><a href="https://www.google.com/maps?q=7901+4th+St+N,+St.+Petersburg,+FL+33702,+USA" target="_blank" style="color: white; text-decoration: none;">7901 4th St N, St. Petersburg, FL 33702, USA</a></p>
+<span><a href="tel:+1 206-844-5935" style="color: white; text-decoration: none;">+1 206-844-5935</a></span>
+
             </div>
         </div>
     </footer>
@@ -1073,6 +1114,8 @@
             }, { threshold: 0.1 });
 
             observer1.observe(packagesSection);
+
+            
 
             // FAQ Section Transition
             const faqItems = document.querySelectorAll('.faq-item');
@@ -1130,6 +1173,21 @@
                 autoScrollInterval = setInterval(autoScroll, 6000);
             });
         });
+
+         // Hero Section Intersection Observer
+         const parallelogram = document.querySelector(".hero-parallelogram");
+            const parallelogramContent = document.querySelector(".hero-parallelogram .content");
+
+            const parallelogramObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        parallelogramContent.classList.add("show-content");
+                        parallelogramObserver.unobserve(entry.target);
+                    }
+                });
+            }, options);
+
+            parallelogramObserver.observe(parallelogram);
     </script>
 
 </body>
