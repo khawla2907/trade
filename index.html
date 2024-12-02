@@ -1130,152 +1130,147 @@
             </div>
         </div>
     </footer>
-
     <script>
+
+    document.addEventListener('DOMContentLoaded', () => {
         // Menu Toggle
-        document.addEventListener('DOMContentLoaded', () => {
-            const menuToggle = document.querySelector('.menu-toggle');
-            const navLinks = document.querySelector('.nav-links');
-            const navItems = document.querySelectorAll('.nav-links a');
-
-            // Toggle mobile menu
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
-
-            // Highlight the current active page in the navigation
-            const currentLocation = window.location.href;
-            navItems.forEach(item => {
-                if (currentLocation.includes(item.getAttribute('href'))) {
-                    item.classList.add('active');
-                } else {
-                    item.classList.remove('active');
-                }
-            });
-
-            // Close menu when a link is clicked
-            navItems.forEach(item => {
-                item.addEventListener('click', () => {
-                    if (navLinks.classList.contains('active')) {
-                        navLinks.classList.remove('active');
-                    }
-                });
-            });
-
-            // Click outside to close the menu
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        const navItems = document.querySelectorAll('.nav-links a');
+    
+        // Toggle mobile menu
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    
+        // Highlight the current active page in the navigation
+        const currentLocation = window.location.href;
+        navItems.forEach(item => {
+            if (currentLocation.includes(item.getAttribute('href'))) {
+                item.classList.add('active');
+            } else {
+                item.classList.remove('active');
+            }
+        });
+    
+        // Close menu when a link is clicked
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                if (navLinks.classList.contains('active')) {
                     navLinks.classList.remove('active');
                 }
             });
-
-            // Packages Section Transition
-            const packagesSection = document.querySelector('.packages');
-            const observer1 = new IntersectionObserver(entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        packagesSection.classList.add('show');
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            observer1.observe(packagesSection);
-
-            
-
-            // FAQ Section Transition
-            const faqItems = document.querySelectorAll('.faq-item');
-            const faqObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('show');
-                        faqObserver.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-
-            faqItems.forEach(item => {
-                faqObserver.observe(item);
-                item.addEventListener('click', () => {
-                    const answer = item.querySelector('.faq-answer');
-                    if (answer.style.display === "block") {
-                        answer.style.display = "none";
-                    } else {
-                        document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = "none");
-                        answer.style.display = "block";
-                    }
-                });
-            });
-
-            // Testimonial Carousel
-            const carousel = document.querySelector('.testimonial-carousel-inner');
-            const items = document.querySelectorAll('.testimonial-item');
-            const leftArrow = document.querySelector('.testimonial-arrow.left');
-            const rightArrow = document.querySelector('.testimonial-arrow.right');
-            let currentIndex = 0;
-
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+        });
+    
+        // Click outside to close the menu
+        document.addEventListener('click', function(event) {
+            if (!menuToggle.contains(event.target) && !navLinks.contains(event.target)) {
+                navLinks.classList.remove('active');
             }
-
-            function autoScroll() {
-                currentIndex = (currentIndex + 1) % items.length;
-                updateCarousel();
-            }
-
-            let autoScrollInterval = setInterval(autoScroll, 6000);
-
-            leftArrow.addEventListener('click', () => {
-                currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
-                updateCarousel();
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = setInterval(autoScroll, 6000);
+        });
+    
+        // Packages Section Transition
+        const packagesSection = document.querySelector('.packages');
+        const observer1 = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    packagesSection.classList.add('show');
+                } else {
+                    packagesSection.classList.remove('show');  // Re-add class to trigger the animation again
+                }
             });
-
-            rightArrow.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length;
-                updateCarousel();
-                clearInterval(autoScrollInterval);
-                autoScrollInterval = setInterval(autoScroll, 6000);
+        }, { threshold: 0.1 });
+        observer1.observe(packagesSection);
+    
+        // FAQ Section Transition
+        const faqItems = document.querySelectorAll('.faq-item');
+        const faqObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                } else {
+                    entry.target.classList.remove('show'); // Re-add class to trigger the animation again
+                }
+            });
+        }, { threshold: 0.1 });
+    
+        faqItems.forEach(item => {
+            faqObserver.observe(item);
+            item.addEventListener('click', () => {
+                const answer = item.querySelector('.faq-answer');
+                if (answer.style.display === "block") {
+                    answer.style.display = "none";
+                } else {
+                    document.querySelectorAll('.faq-answer').forEach(ans => ans.style.display = "none");
+                    answer.style.display = "block";
+                }
             });
         });
-
-         // Get the .hero-parallelogram and its content
-const parallelogram = document.querySelector(".hero-parallelogram");
-const parallelogramContent = document.querySelector(".hero-parallelogram .content");
-
-// Set up the Intersection Observer
-const parallelogramObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-            // Add class to trigger animation only for content (not the whole parallelogram)
-            parallelogramContent.classList.add("show-content");
-            observer.unobserve(entry.target); // Stop observing after the animation
+    
+        // Testimonial Carousel
+        const carousel = document.querySelector('.testimonial-carousel-inner');
+        const items = document.querySelectorAll('.testimonial-item');
+        const leftArrow = document.querySelector('.testimonial-arrow.left');
+        const rightArrow = document.querySelector('.testimonial-arrow.right');
+        let currentIndex = 0;
+    
+        function updateCarousel() {
+            carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
         }
-    });
-}, { threshold: 0.5 }); // Trigger the animation when 50% of the element is visible
-
-// Observe the parallelogram for visibility
-parallelogramObserver.observe(parallelogram);
-
-// Select all the steps
-const steps = document.querySelectorAll('.steps-section .step');
-
-// Create an Intersection Observer to detect when the steps section comes into view
-const stepsObserver = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            // Add the 'show-step' class to animate the step in
-            entry.target.classList.add('show-step');
-            observer.unobserve(entry.target); // Stop observing the element after animation
+    
+        function autoScroll() {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
         }
+    
+        let autoScrollInterval = setInterval(autoScroll, 6000);
+    
+        leftArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+            updateCarousel();
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(autoScroll, 6000);
+        });
+    
+        rightArrow.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % items.length;
+            updateCarousel();
+            clearInterval(autoScrollInterval);
+            autoScrollInterval = setInterval(autoScroll, 6000);
+        });
+    
+        // Hero Parallelogram Transition
+        const parallelogram = document.querySelector(".hero-parallelogram");
+        const parallelogramContent = document.querySelector(".hero-parallelogram .content");
+        const parallelogramObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    parallelogramContent.classList.add("show-content");
+                } else {
+                    parallelogramContent.classList.remove("show-content"); // Re-add class to trigger the animation again
+                }
+            });
+        }, { threshold: 0.5 });
+    
+        parallelogramObserver.observe(parallelogram);
+    
+        // Steps Section Transition
+        const steps = document.querySelectorAll('.steps-section .step');
+        const stepsObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-step');
+                } else {
+                    entry.target.classList.remove('show-step'); // Re-add class to trigger the animation again
+                }
+            });
+        }, { threshold: 0.5 });
+    
+        steps.forEach(step => {
+            stepsObserver.observe(step);
+        });
     });
-}, { threshold: 0.5 }); // Trigger when 50% of the element is visible
-
-// Observe each step element
-steps.forEach(step => {
-    stepsObserver.observe(step);
-});
+    
 
 
     </script>
